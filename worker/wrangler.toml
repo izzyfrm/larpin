@@ -1,0 +1,19 @@
+name = "larpin-api"
+main = "index.js"
+compatibility_date = "2026-10-01"
+
+[vars]
+SITE_ORIGIN = "https://YOUR-USERNAME.github.io"
+SUPPORT_EMAIL = ""
+
+[[d1_databases]]
+binding = "DB"
+database_name = "larpin"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
+
+[[r2_buckets]]
+binding = "MEDIA"
+bucket_name = "larpin-media"
+
+[triggers]
+crons = ["* * * * *"]
