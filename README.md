@@ -20,6 +20,12 @@ npm run build
 
 `dist/` is the Pages artifact. The app uses relative asset paths, so it supports project Pages URLs such as `https://user.github.io/larpin/`. Enable **GitHub Pages → Source → GitHub Actions** and push these files to `main`. The included workflow builds and deploys the site; no deployment has been made by this task.
 
+## Cloudflare Workers static-site deployment
+
+For a Cloudflare Git-connected Worker named `larpin`, use the repository root as the root directory and `npx wrangler deploy` as the deploy command (or `npm run deploy`). The root `wrangler.jsonc` runs `npm run build` automatically and uploads **only `dist/`**. A separate dashboard build command is optional. Never set the assets directory to `.`: that includes dependencies, backend source and other files that are not website assets.
+
+The root configuration deploys the public website only. The account/moderation API remains a separate Worker configured in `worker/wrangler.toml`; deploy that with `npm run worker:deploy` after setting up its resources and secrets below. A successful static-site deployment does not enable live accounts by itself.
+
 ## Free studio media
 
 Put safe, authorized JPG, PNG, WebP, MP4 or WebM files in `larp-stuff/`. Filenames become titles and subfolders are supported. `npm run build` automatically generates `larp-stuff/manifest.json`. Pushing new files to main triggers the Pages build. During development restart the dev server after adding files. All files in this directory are public and operator-reviewed; they do not go through submission moderation. Do not store confidential material or unlicensed images there.

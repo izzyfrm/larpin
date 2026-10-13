@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "node scripts/dev.mjs",
     "build": "node scripts/build.mjs",
+    "deploy": "wrangler deploy --config wrangler.jsonc",
     "test": "node --test",
     "test:api": "node scripts/smoke-api.mjs",
     "worker:dev": "wrangler dev --config worker/wrangler.toml",
