@@ -26,6 +26,8 @@ For a Cloudflare Git-connected Worker named `larpin`, use the repository root as
 
 The root configuration deploys the public website only. The account/moderation API remains a separate Worker configured in `worker/wrangler.toml`; deploy that with `npm run worker:deploy` after setting up its resources and secrets below. A successful static-site deployment does not enable live accounts by itself.
 
+The root config declares `larpin.fun` as a **Worker Custom Domain**, so deployment attaches that hostname directly to the static-site Worker in the Cloudflare account owning its zone. A proxied DNS record pointing to an unrelated web host is not enough and can produce error 522. If deployment reports a conflicting DNS record, use **Workers & Pages → larpin → Settings → Domains & Routes → Add → Custom Domain** to attach `larpin.fun`, resolving only the conflicting website record. Preserve mail and verification records. First verify the latest deployment at its `workers.dev` URL: if that works but the custom domain fails, investigate the domain attachment/DNS instead of rebuilding app code. `www.larpin.fun` is not configured automatically.
+
 ## Free studio media
 
 Put safe, authorized JPG, PNG, WebP, MP4 or WebM files in `larp-stuff/`. Filenames become titles and subfolders are supported. `npm run build` automatically generates `larp-stuff/manifest.json`. Pushing new files to main triggers the Pages build. During development restart the dev server after adding files. All files in this directory are public and operator-reviewed; they do not go through submission moderation. Do not store confidential material or unlicensed images there.
