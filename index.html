@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>larpin</title>
+  <meta name="description" content="A gallery of larp images and videos. Browse, download, and submit your own.">
+  <meta name="color-scheme" content="dark">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script>
+    // Applied before first paint so the page never flashes the wrong theme.
+    try {
+      var t = localStorage.getItem('larpin.theme');
+      if (t === 'light') document.documentElement.dataset.theme = 'light';
+    } catch (e) {}
+  </script>
+  <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+  <a class="skip" href="#view">Skip to content</a>
+  <header class="top" id="top"></header>
+  <main id="view" tabindex="-1"></main>
+  <footer class="foot">
+    <p>larpin</p>
+    <nav aria-label="Legal">
+      <a href="#/terms">Terms</a>
+      <a href="#/privacy">Privacy</a>
+      <a href="#/settings">Settings</a>
+    </nav>
+  </footer>
+  <dialog class="viewer" id="viewer" aria-label="Post"></dialog>
+  <div class="toasts" id="toasts" role="status" aria-live="polite"></div>
+  <button class="to-top" id="to-top" type="button" aria-label="Back to top" hidden></button>
+  <noscript><p class="noscript">larpin needs JavaScript to load the gallery.</p></noscript>
+  <script type="module" src="assets/js/app.js"></script>
+</body>
+</html>

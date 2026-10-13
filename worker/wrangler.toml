@@ -1,0 +1,35 @@
+name = "larpin-api"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Reviews due submissions once a minute.
+[triggers]
+crons = ["* * * * *"]
+
+[vars]
+# Sites allowed to call this API (comma separated, no trailing slash).
+ALLOWED_ORIGINS = "https://izzyfrm.github.io,https://larpin.fun,http://localhost:8080,http://127.0.0.1:8080"
+# Usernames that can open the moderation queue (comma separated).
+ADMIN_USERNAMES = ""
+# Vision model used for the safety check.
+MODERATION_MODEL = "@cf/meta/llama-4-scout-17b-16e-instruct"
+# Seconds a submission waits before it is reviewed.
+REVIEW_DELAY_SECONDS = "120"
+# Submissions reviewed per cron run. Keep at 5 or below on the Workers free plan.
+REVIEW_BATCH = "5"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "larpin"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
+
+[[r2_buckets]]
+binding = "MEDIA"
+bucket_name = "larpin-media"
+
+[ai]
+binding = "AI"
+
+# Secret (set with `wrangler secret put IP_SALT`): any long random string.
+# Used to hash IP addresses for rate limiting so raw IPs are never stored.

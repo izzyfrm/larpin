@@ -1,0 +1,23 @@
+name = "larpin-api-test"
+main = "dev-entry.js"
+compatibility_date = "2026-10-01"
+compatibility_flags = ["nodejs_compat"]
+
+[triggers]
+crons = ["* * * * *"]
+
+[vars]
+ALLOWED_ORIGINS = "http://localhost:8080,http://127.0.0.1:8080"
+ADMIN_USERNAMES = "boss"
+MODERATION_MODEL = "stub"
+REVIEW_DELAY_SECONDS = "3"
+REVIEW_BATCH = "5"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "larpin-test"
+database_id = "00000000-0000-0000-0000-000000000000"
+
+[[r2_buckets]]
+binding = "MEDIA"
+bucket_name = "larpin-media-test"
